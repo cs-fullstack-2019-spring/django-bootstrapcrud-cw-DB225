@@ -1,5 +1,23 @@
 {% extends 'BootCRUDApp/base.html' %}
 
 {% block content %}
-<h1>In the Index Page</h1>
+<h1>Items</h1>
+{% if Items %}
+<div class="container">
+    {% for item in Items %}
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ item.picture_URL }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="card-text">{{ item.description }}</p>
+            <p class="card-text">${{ item.price }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<h1>No item availaible</h1>
+{% endif %}
+
+<p>Add a item right <a href="{% url 'newItem' %}">here</a></p>
 {% endblock content %}
